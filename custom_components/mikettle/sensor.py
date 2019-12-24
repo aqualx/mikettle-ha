@@ -29,6 +29,7 @@ from homeassistant.helpers.entity import Entity
 _LOGGER = logging.getLogger(__name__)
 
 CONF_PRODUCT_ID = "product_id"
+CONF_IFACE = "iface"
 
 DEFAULT_PRODUCT_ID = 275
 DEFAULT_FORCE_UPDATE = False
@@ -54,6 +55,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
         vol.Optional(CONF_PRODUCT_ID, default=DEFAULT_PRODUCT_ID): cv.positive_int,
         vol.Optional(CONF_FORCE_UPDATE, default=DEFAULT_FORCE_UPDATE): cv.boolean,
+        vol.Optional(CONF_IFACE, default=None): cv.positive_int,
     }
 )
 
@@ -61,7 +63,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up the MiKettle sensor."""
     cache = config.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL).total_seconds()
-    poller = MiKettle(config.get(CONF_MAC), config.get(CONF_PRODUCT_ID))
+    poller = MiKettle(mac=config.get(CONF_MAC), product_id=config.get(CONF_PRODUCT_ID), iface=config.get(CONF_IFACE))
 
     force_update = config.get(CONF_FORCE_UPDATE)
 
