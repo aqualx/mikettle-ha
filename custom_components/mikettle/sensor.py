@@ -35,6 +35,7 @@ DEFAULT_PRODUCT_ID = 275
 DEFAULT_FORCE_UPDATE = False
 DEFAULT_NAME = "Mi Kettle"
 DEFAULT_SCAN_INTERVAL = timedelta(seconds=60)
+DEFAULT_IFACE = 0
 
 # Sensor types are defined like: Name, units, icon
 SENSOR_TYPES = {
@@ -55,7 +56,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
         vol.Optional(CONF_PRODUCT_ID, default=DEFAULT_PRODUCT_ID): cv.positive_int,
         vol.Optional(CONF_FORCE_UPDATE, default=DEFAULT_FORCE_UPDATE): cv.boolean,
-        vol.Optional(CONF_IFACE, default=None): cv.positive_int,
+        vol.Optional(CONF_IFACE, default=DEFAULT_IFACE): cv.positive_int,
     }
 )
 
