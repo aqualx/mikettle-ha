@@ -30,6 +30,10 @@ More options are:
 - name (string)(Optional)
   The name displayed in the frontend.
   
+- iface (integer)(Optional)
+  Parameter allows select of connection Bluetooth interface.
+  On Linux, 0 means */dev/hci0*, 1 means */dev/hci1* and so on.
+  
 Even more options regarding caching and intervals are comming in the future.
 
 For advanced debugging set:
